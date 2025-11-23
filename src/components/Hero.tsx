@@ -18,7 +18,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-4 sm:mb-6 leading-tight">
             Hausarztpraxis<br />
-            <span className="text-primary">Caroline Weil de Vega</span>
+            <span className="text-primary">Dr. Caroline Weil de Vega</span>
           </h1>
           
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
