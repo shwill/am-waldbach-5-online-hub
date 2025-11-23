@@ -4,21 +4,21 @@ import { Button } from "@/components/ui/button";
 
 const Contact = () => {
   return (
-    <section id="kontakt" className="py-20 bg-secondary/30">
-      <div className="container mx-auto px-4">
+    <section id="kontakt" className="py-12 sm:py-16 md:py-20 bg-secondary/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
+          <div className="text-center mb-10 sm:mb-12 md:mb-16 animate-slide-up">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-bold text-foreground mb-3 sm:mb-4 px-4">
               Kontakt & Anfahrt
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-base sm:text-lg text-muted-foreground px-4">
               Wir freuen uns auf Ihren Besuch
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card className="p-8 bg-card shadow-lg border-0">
-              <h3 className="text-2xl font-serif font-bold text-foreground mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+            <Card className="p-6 sm:p-8 bg-card shadow-lg border-0">
+              <h3 className="text-xl sm:text-2xl font-serif font-bold text-foreground mb-4 sm:mb-6">
                 Praxisinformationen
               </h3>
               
@@ -64,9 +64,9 @@ const Contact = () => {
                 </div>
               </div>
               
-              <div className="mt-8 pt-6 border-t border-border">
+              <div className="mt-6 sm:mt-8 pt-6 border-t border-border">
                 <Button 
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground min-h-[48px]"
                   size="lg"
                   asChild
                 >
@@ -79,7 +79,7 @@ const Contact = () => {
             </Card>
             
             <Card className="p-0 bg-card shadow-lg border-0 overflow-hidden">
-              <div className="h-full min-h-[400px]">
+              <div className="h-full min-h-[300px] sm:min-h-[400px]">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2668.5!2d7.9419!3d48.4667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDI4JzAwLjEiTiA3wrA1NicxOC45IkU!5e0!3m2!1sde!2sde!4v1234567890"
                   width="100%"
