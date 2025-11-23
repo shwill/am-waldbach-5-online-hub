@@ -1,17 +1,53 @@
-import { Clock } from "lucide-react";
+import { Clock, CheckCircle2, XCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { useMemo } from "react";
 
 const openingHours = [
-  { day: "Montag", hours: "08:00–12:00, 16:00–19:00" },
-  { day: "Dienstag", hours: "08:00–12:00" },
-  { day: "Mittwoch", hours: "08:00–12:00" },
-  { day: "Donnerstag", hours: "15:00–18:00" },
-  { day: "Freitag", hours: "08:00–12:00" },
-  { day: "Samstag", hours: "Geschlossen", closed: true },
-  { day: "Sonntag", hours: "Geschlossen", closed: true },
+  { day: "Montag", dayIndex: 1, morning: "08:00–12:00", afternoon: "16:00–19:00" },
+  { day: "Dienstag", dayIndex: 2, morning: "08:00–12:00", afternoon: null },
+  { day: "Mittwoch", dayIndex: 3, morning: "08:00–12:00", afternoon: null },
+  { day: "Donnerstag", dayIndex: 4, morning: null, afternoon: "15:00–18:00" },
+  { day: "Freitag", dayIndex: 5, morning: "08:00–12:00", afternoon: null },
+  { day: "Samstag", dayIndex: 6, morning: null, afternoon: null, closed: true },
+  { day: "Sonntag", dayIndex: 0, morning: null, afternoon: null, closed: true },
 ];
 
+const parseTime = (timeStr: string) => {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  return hours * 60 + minutes;
+};
+
+const isCurrentlyOpen = (morning: string | null, afternoon: string | null, closed?: boolean) => {
+  if (closed) return false;
+
+  const now = new Date();
+  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+
+  const checkTimeRange = (range: string) => {
+    const [start, end] = range.split('–');
+    const startMinutes = parseTime(start);
+    const endMinutes = parseTime(end);
+    return currentMinutes >= startMinutes && currentMinutes <= endMinutes;
+  };
+
+  if (morning && checkTimeRange(morning)) return true;
+  if (afternoon && checkTimeRange(afternoon)) return true;
+
+  return false;
+};
+
 const OpeningHours = () => {
+  const { currentDayIndex, isOpen, todayHours } = useMemo(() => {
+    const now = new Date();
+    const dayIndex = now.getDay();
+    const today = openingHours.find(h => h.dayIndex === dayIndex);
+
+    return {
+      currentDayIndex: dayIndex,
+      isOpen: today ? isCurrentlyOpen(today.morning, today.afternoon, today.closed) : false,
+      todayHours: today
+    };
+  }, []);
   return (
     <section className="py-12 sm:py-16 md:py-20 bg-secondary/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -27,25 +63,84 @@ const OpeningHours = () => {
               Wir sind für Sie da
             </p>
           </div>
+
+          {/* Status Banner */}
+          <div className={`mb-6 sm:mb-8 p-4 rounded-lg border-2 ${
+            isOpen
+              ? 'bg-green-50 dark:bg-green-950/20 border-green-500/30'
+              : 'bg-orange-50 dark:bg-orange-950/20 border-orange-500/30'
+          }`}>
+            <div className="flex items-center justify-center gap-2 sm:gap-3">
+              {isOpen ? (
+                <>
+                  <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600 dark:text-green-500 flex-shrink-0" />
+                  <p className="text-sm sm:text-base font-semibold text-green-700 dark:text-green-400">
+                    Wir haben geöffnet
+                  </p>
+                </>
+              ) : (
+                <>
+                  <XCircle className="w-5 h-5 sm:w-6 sm:h-6 text-orange-600 dark:text-orange-500 flex-shrink-0" />
+                  <p className="text-sm sm:text-base font-semibold text-orange-700 dark:text-orange-400">
+                    Aktuell geschlossen
+                  </p>
+                </>
+              )}
+            </div>
+          </div>
           
           <Card className="bg-card shadow-lg border-0 overflow-hidden">
             <div className="divide-y divide-border">
-              {openingHours.map((item, index) => (
-                <div 
-                  key={item.day}
-                  className={`flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 sm:gap-4 px-4 sm:px-6 md:px-8 py-4 sm:py-5 transition-colors hover:bg-secondary/50 ${
-                    item.closed ? 'opacity-60' : ''
-                  }`}
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <span className="font-semibold text-foreground text-base sm:text-lg">
-                    {item.day}
-                  </span>
-                  <span className={`text-sm sm:text-base ${item.closed ? 'text-muted-foreground' : 'text-primary font-medium'}`}>
-                    {item.hours}
-                  </span>
-                </div>
-              ))}
+              {openingHours.map((item, index) => {
+                const isCurrentDay = item.dayIndex === currentDayIndex;
+                const isClosed = item.closed || (!item.morning && !item.afternoon);
+
+                return (
+                  <div
+                    key={item.day}
+                    className={`flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 px-4 sm:px-6 md:px-8 py-4 sm:py-5 transition-all ${
+                      isCurrentDay
+                        ? 'bg-primary/5 border-l-4 border-l-primary'
+                        : 'hover:bg-secondary/50'
+                    } ${isClosed ? 'opacity-60' : ''}`}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className={`font-semibold text-base sm:text-lg ${
+                        isCurrentDay ? 'text-primary' : 'text-foreground'
+                      }`}>
+                        {item.day}
+                      </span>
+                      {isCurrentDay && (
+                        <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                          Heute
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-3 text-sm sm:text-base">
+                      {isClosed ? (
+                        <span className="text-muted-foreground italic">Geschlossen</span>
+                      ) : (
+                        <>
+                          {item.morning && (
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs text-muted-foreground hidden sm:inline">Vormittags:</span>
+                              <span className="text-primary font-medium">{item.morning}</span>
+                            </div>
+                          )}
+                          {item.afternoon && (
+                            <div className="flex items-center gap-1">
+                              <span className="text-xs text-muted-foreground hidden sm:inline">Nachmittags:</span>
+                              <span className="text-primary font-medium">{item.afternoon}</span>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </Card>
           
