@@ -14,24 +14,24 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-background/80" />
       </div>
       
-      <div className="container mx-auto px-4 z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-foreground mb-4 sm:mb-6 leading-tight">
             Hausarztpraxis<br />
             <span className="text-primary">Caroline Weil de Vega</span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Ihre Gesundheit liegt uns am Herzen. Kompetente medizinische Versorgung für die ganze Familie in Offenburg.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-8 sm:mb-12 px-4">
             <Button 
               size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all min-h-[48px] w-full sm:w-auto"
               asChild
             >
-              <a href="tel:078139003" className="flex items-center gap-2">
+              <a href="tel:078139003" className="flex items-center justify-center gap-2">
                 <Phone className="w-5 h-5" />
                 0781 39003
               </a>
@@ -40,19 +40,19 @@ const Hero = () => {
             <Button 
               size="lg" 
               variant="outline"
-              className="border-2 border-primary/20 hover:border-primary/40 hover:bg-secondary/50"
+              className="border-2 border-primary/20 hover:border-primary/40 hover:bg-secondary/50 min-h-[48px] w-full sm:w-auto"
               asChild
             >
-              <a href="#kontakt" className="flex items-center gap-2">
+              <a href="#kontakt" className="flex items-center justify-center gap-2">
                 <MapPin className="w-5 h-5" />
                 Anfahrt
               </a>
             </Button>
           </div>
           
-          <div className="inline-flex items-center gap-2 text-muted-foreground bg-card/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-sm">
-            <MapPin className="w-4 h-4 text-primary" />
-            <span className="text-sm">Am Waldbach 5, 77654 Offenburg</span>
+          <div className="inline-flex items-center gap-2 text-muted-foreground bg-card/80 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-sm mx-4">
+            <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
+            <span className="text-xs sm:text-sm">Am Waldbach 5, 77654 Offenburg</span>
           </div>
         </div>
       </div>
