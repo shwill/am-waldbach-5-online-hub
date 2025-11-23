@@ -1,4 +1,5 @@
-import { Phone, MapPin } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -23,14 +24,22 @@ const Footer = () => {
               0781 39003
             </a>
             <span className="hidden sm:inline text-muted-foreground">•</span>
-            <span className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="w-4 h-4" />
-              Am Waldbach 5, 77654 Offenburg
-            </span>
+            <a 
+              href="mailto:kontakt@gmail.com" 
+              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Mail className="w-4 h-4" />
+              kontakt@gmail.com
+            </a>
           </div>
         </div>
         
         <div className="mt-6 pt-6 border-t border-border text-center text-xs sm:text-sm text-muted-foreground px-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center items-center mb-3">
+            <Link to="/impressum" className="hover:text-primary transition-colors underline">
+              Impressum
+            </Link>
+          </div>
           <p>© {new Date().getFullYear()} Hausarztpraxis Caroline Weil de Vega. Alle Rechte vorbehalten.</p>
         </div>
       </div>

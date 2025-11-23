@@ -2,11 +2,11 @@ import { Clock } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const openingHours = [
-  { day: "Montag", hours: "08:00–11:30, 15:00–18:00" },
-  { day: "Dienstag", hours: "15:00–18:00" },
-  { day: "Mittwoch", hours: "08:00–11:30" },
-  { day: "Donnerstag", hours: "08:00–11:30, 15:00–18:00" },
-  { day: "Freitag", hours: "08:00–11:30" },
+  { day: "Montag", hours: "08:00–12:00, 16:00–19:00" },
+  { day: "Dienstag", hours: "08:00–12:00" },
+  { day: "Mittwoch", hours: "08:00–12:00" },
+  { day: "Donnerstag", hours: "15:00–18:00" },
+  { day: "Freitag", hours: "08:00–12:00" },
   { day: "Samstag", hours: "Geschlossen", closed: true },
   { day: "Sonntag", hours: "Geschlossen", closed: true },
 ];
