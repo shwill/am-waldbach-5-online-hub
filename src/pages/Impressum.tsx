@@ -41,7 +41,7 @@ const Impressum = () => {
                   Kontakt
                 </h2>
                 <p className="text-muted-foreground leading-relaxed">
-                  Telefon: 0781 39003<br />
+                  Telefon: 0781 00000<br />
                   E-Mail: kontakt@gmail.com
                 </p>
               </section>
