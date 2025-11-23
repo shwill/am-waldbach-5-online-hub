@@ -31,9 +31,9 @@ const Hero = () => {
               className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all min-h-[48px] w-full sm:w-auto"
               asChild
             >
-              <a href="tel:078139003" className="flex items-center justify-center gap-2">
+              <a href="tel:078100000" className="flex items-center justify-center gap-2">
                 <Phone className="w-5 h-5" />
-                0781 39003
+                0781 00000
               </a>
             </Button>
             

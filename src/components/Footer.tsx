@@ -16,12 +16,12 @@ const Footer = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 text-xs sm:text-sm px-4">
-            <a 
-              href="tel:078139003" 
+            <a
+              href="tel:078100000"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
             >
               <Phone className="w-4 h-4" />
-              0781 39003
+              0781 00000
             </a>
             <span className="hidden sm:inline text-muted-foreground">•</span>
             <a 

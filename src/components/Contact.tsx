@@ -42,11 +42,11 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Telefon</h4>
-                    <a 
-                      href="tel:078139003" 
+                    <a
+                      href="tel:078100000"
                       className="text-primary hover:text-primary/80 transition-colors"
                     >
-                      0781 39003
+                      0781 00000
                     </a>
                   </div>
                 </div>
@@ -85,7 +85,7 @@ const Contact = () => {
                   size="lg"
                   asChild
                 >
-                  <a href="tel:078139003" className="flex items-center justify-center gap-2">
+                  <a href="tel:078100000" className="flex items-center justify-center gap-2">
                     <Phone className="w-5 h-5" />
                     Jetzt anrufen
                   </a>
