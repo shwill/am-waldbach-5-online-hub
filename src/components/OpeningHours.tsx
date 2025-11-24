@@ -1,5 +1,6 @@
 import { Clock, CheckCircle2, XCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useMemo } from "react";
 
 const openingHours = [
@@ -90,58 +91,64 @@ const OpeningHours = () => {
           </div>
           
           <Card className="bg-card shadow-lg border-0 overflow-hidden">
-            <div className="divide-y divide-border">
-              {openingHours.map((item, index) => {
-                const isCurrentDay = item.dayIndex === currentDayIndex;
-                const isClosed = item.closed || (!item.morning && !item.afternoon);
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-secondary/50">
+                  <TableHead className="font-semibold text-foreground text-base sm:text-lg">Wochentag</TableHead>
+                  <TableHead className="font-semibold text-foreground text-base sm:text-lg text-center">Vormittags</TableHead>
+                  <TableHead className="font-semibold text-foreground text-base sm:text-lg text-center">Nachmittags</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {openingHours.map((item, index) => {
+                  const isCurrentDay = item.dayIndex === currentDayIndex;
+                  const isClosed = item.closed || (!item.morning && !item.afternoon);
 
-                return (
-                  <div
-                    key={item.day}
-                    className={`flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-4 px-4 sm:px-6 md:px-8 py-4 sm:py-5 transition-all ${
-                      isCurrentDay
-                        ? 'bg-primary/5 border-l-4 border-l-primary'
-                        : 'hover:bg-secondary/50'
-                    } ${isClosed ? 'opacity-60' : ''}`}
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <span className={`font-semibold text-base sm:text-lg ${
-                        isCurrentDay ? 'text-primary' : 'text-foreground'
-                      }`}>
-                        {item.day}
-                      </span>
-                      {isCurrentDay && (
-                        <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
-                          Heute
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-3 text-sm sm:text-base">
-                      {isClosed ? (
-                        <span className="text-muted-foreground italic">Geschlossen</span>
-                      ) : (
-                        <>
-                          {item.morning && (
-                            <div className="flex items-center gap-1">
-                              <span className="text-xs text-muted-foreground hidden sm:inline">Vormittags:</span>
-                              <span className="text-primary font-medium">{item.morning}</span>
-                            </div>
+                  return (
+                    <TableRow
+                      key={item.day}
+                      className={`transition-all ${
+                        isCurrentDay
+                          ? 'bg-primary/5 border-l-4 border-l-primary'
+                          : 'hover:bg-secondary/50'
+                      } ${isClosed ? 'opacity-60' : ''}`}
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <TableCell className="font-semibold text-base sm:text-lg">
+                        <div className="flex items-center gap-2">
+                          <span className={isCurrentDay ? 'text-primary' : 'text-foreground'}>
+                            {item.day}
+                          </span>
+                          {isCurrentDay && (
+                            <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
+                              Heute
+                            </span>
                           )}
-                          {item.afternoon && (
-                            <div className="flex items-center gap-1">
-                              <span className="text-xs text-muted-foreground hidden sm:inline">Nachmittags:</span>
-                              <span className="text-primary font-medium">{item.afternoon}</span>
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-center text-base sm:text-lg">
+                        {isClosed ? (
+                          <span className="text-muted-foreground italic">–</span>
+                        ) : item.morning ? (
+                          <span className="text-primary font-medium">{item.morning}</span>
+                        ) : (
+                          <span className="text-muted-foreground">–</span>
+                        )}
+                      </TableCell>
+                      <TableCell className="text-center text-base sm:text-lg">
+                        {isClosed ? (
+                          <span className="text-muted-foreground italic">–</span>
+                        ) : item.afternoon ? (
+                          <span className="text-primary font-medium">{item.afternoon}</span>
+                        ) : (
+                          <span className="text-muted-foreground">–</span>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
           </Card>
           
           <div className="mt-6 sm:mt-8 text-center px-4">
