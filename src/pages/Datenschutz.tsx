@@ -40,6 +40,19 @@ const Datenschutz = () => {
                   Text aufgeführten Datenschutzerklärung.
                 </p>
 
+                <div className="bg-primary/5 border-l-4 border-primary p-4 mb-4 rounded">
+                  <p className="text-foreground font-semibold mb-2">
+                    Wichtige Klarstellung zur Datenverarbeitung
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Diese Website erhebt, sammelt oder speichert keinerlei personenbezogene Daten der
+                    Besucher – mit Ausnahme der Datenübermittlung an Google, die ausschließlich dann
+                    erfolgt, wenn Sie die Google Maps Karte aktiv durch Klick auf „Karte laden"
+                    aktivieren. Ohne Ihre ausdrückliche Einwilligung durch diesen Klick findet keine
+                    Datenübermittlung an Dritte statt.
+                  </p>
+                </div>
+
                 <h3 className="text-lg font-semibold mb-2 mt-4">
                   Datenerfassung auf dieser Website
                 </h3>
