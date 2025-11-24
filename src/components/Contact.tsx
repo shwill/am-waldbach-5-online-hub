@@ -109,7 +109,7 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground mb-6 max-w-md text-center">
                       Durch das Laden der Karte werden Daten an Google übertragen.
                       Mehr Informationen finden Sie in unserer{" "}
-                      <a href="/impressum" className="text-primary hover:underline">
+                      <a href="/datenschutz" className="text-primary hover:underline">
                         Datenschutzerklärung
                       </a>.
                     </p>

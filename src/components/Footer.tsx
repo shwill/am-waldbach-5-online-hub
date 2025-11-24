@@ -9,6 +9,10 @@ const Footer = () => {
             <Link to="/impressum" className="hover:text-primary transition-colors underline">
               Impressum
             </Link>
+            <span className="hidden sm:inline text-muted-foreground/50">•</span>
+            <Link to="/datenschutz" className="hover:text-primary transition-colors underline">
+              Datenschutzerklärung
+            </Link>
           </div>
           <p>© {new Date().getFullYear()} Hausarztpraxis Dr. Caroline Weil de Vega</p>
         </div>
